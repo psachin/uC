@@ -1,7 +1,7 @@
 # make file for /home/sachin/github/uC
 # From: http://www.youtube.com/watch?v=wfQBS22jxL8&list=PLE72E4CFE73BD1DE1
 # run as:
-# make compile ARG="hello" (to compile)
+# make compile ARG="hello" or make ARG="hello" (to compile)
 # make burn ARG="hello" (to burn)
 # make clean ARG="hello" (to clean)
 
