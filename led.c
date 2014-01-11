@@ -28,20 +28,31 @@ void main(void) {
   PORTB |= 1 << PINB1;		/* set PINB1 to HIGH */
 
   int pressed = 0;
-  
+  int pressed_confidence_level = 0;
+  int released_confidence_level = 0;
+  // 00000000000000010101000111111111111110101010000000000000000000010101011111111111111111111111
   while (1) {
     /* never ending loop. */
     if (bit_is_clear(PINB, 1)) {
       /* button is pressed */
-      if (pressed == 0) {
-	PORTB ^= 1 << PORTB0;
-	PORTB ^= 1 << PORTB2;
-	pressed = 1;
+      pressed_confidence_level ++;
+      if (pressed_confidence_level > 200) {
+	
+	if (pressed == 0) {
+	  PORTB ^= 1 << PORTB0;
+	  PORTB ^= 1 << PORTB2;
+	  pressed = 1;
+	}
+	pressed_confidence_level = 0;
       }
     }
     else {
       /* button is not pressed */
-      pressed = 0;
+      released_confidence_level ++;
+      if (released_confidence_level > 200) {
+	pressed = 0;
+	released_confidence_level = 0;
+      }
     }
   }
 }
