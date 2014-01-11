@@ -3,6 +3,7 @@
 #define F_CPU 1000000		/* I don't know the bast value, but
 				   the LED flashes */
 #include <util/delay.h>
+#include <avr/interrupt.h>
 
 
 
@@ -20,23 +21,27 @@ void main(void) {
   DDRB |= 1 << PINB0;		/* (OR operator)assign PIN0(of PORTB)
 				   as 1. PINB0 has reference in 'io.h'
 				   file */
+  PORTB ^= 1 << PINB0;		/* Toggling only PIN0 of PORTB */
+  DDRB |= 1 << PINB2;		/* Set direction for output on PINB2 */
 
   DDRB &= ~(1 << PINB1);	/* DDR input PINB1 */
   PORTB |= 1 << PINB1;		/* set PINB1 to HIGH */
 
+  int pressed = 0;
+  
   while (1) {
     /* never ending loop. */
-    PORTB ^= 1 << PINB0;		/* '^' is X-OR operation
-					   which will flip PIN0 to 1
-					   and 0 */
-
     if (bit_is_clear(PINB, 1)) {
       /* button is pressed */
-      _delay_ms(10000);
+      if (pressed == 0) {
+	PORTB ^= 1 << PORTB0;
+	PORTB ^= 1 << PORTB2;
+	pressed = 1;
+      }
     }
     else {
       /* button is not pressed */
-      _delay_ms(1000);			/* delay 100 milli seconds */
+      pressed = 0;
     }
   }
 }
