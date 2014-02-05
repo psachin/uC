@@ -1,0 +1,36 @@
+* ATMega32A in avr-C
+
+** Usage
+   -
+
+
+
+** Usage
+   - To compile
+     #+BEGIN_SRC sh
+       make compile ARG="hello"
+     #+END_SRC sh
+
+     or
+     #+BEGIN_SRC sh
+       make ARG="hello"
+     #+END_SRC sh
+
+     /Note/: In the above example if you provide the string as *hello*
+     to =ARG=, you must have =hello.c= in the same directory as
+     =Makefile=.
+
+   - To flash/burn your program
+     #+BEGIN_SRC sh
+       make burn ARG="hello"
+     #+END_SRC sh
+
+   - To clean
+     #+BEGIN_SRC sh
+       make clean ARG="hello"
+     #+END_SRC sh
+
+     optionally you can also run
+     #+BEGIN_SRC sh
+       make clean
+     #+END_SRC sh
