@@ -1,9 +1,9 @@
 * ATMega32A in avr-C
 
-** Usage
-   -
-
-
+** Depends on
+   - gcc-avr
+   - avr-libc
+   - avrdude
 
 ** Usage
    - To compile
