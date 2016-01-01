@@ -1,0 +1,52 @@
+* uC
+** ATMEGA32
+   - 32 i/o pins
+   - 32 KB flash memory
+   - 512 bytes EEPROM
+   - 2KB static ROM
+   - 3 timers/counters
+   - 1 serial interface(USART)
+   - 8-channel, 10-bit ADC
+   - 1 SPI
+
+** ADC register
+*** ADCSRA register
+    - Setting ADEN will enable ADC
+    - Setting ADSC will start convertion
+    - ADIF is set after conversion. This bit can be cleared by writing
+      1 to it.
+    - ADSP bits decides the speed of operation, by pre-scaling the
+      clock input.
+
+
+
+
+	   7   	       	     6 	       	       5       	      4	       	     3 	       	   2   	       	1      	       	0
+   +-----------------+----------------+----------------+--------------+-------------+-------------+-------------+----------------+
+   |                 | 	              |	      	       |              |             |        	  |	        |             	 |
+   |                 | 	              |	      	       |              |             |        	  |	        |             	 |
+   |    ADEN         |    ADSC        |	    ADATE      |   ADIF       |   ADIE      |   ADPS2  	  |    ADPS1    |    ADPS0    	 |
+   |                 |                |                |              |             |             |             |             	 |
+   |                 |                |                |              |             |             |             |                |
+   +-----------------+----------------+----------------+--------------+-------------+-------------+-------------+----------------+
+       	  R/W  	       	    R/W	       	      R/W      	      R/W      	     R/W       	  R/W  	       	 R/W   	       	R/W
+       	   0   	       	     0 	       	       0       	       0       	      0	       	   0   	       	  0    	       	 0
+
+
+
+*** ADMUX register
+    - Channel number is selected by MUX0 TO MUX4 bits in the ADMUX
+      register
+    - Reference input is selected by the REFS0 and REFS1 bits
+
+      7   	       	     6 	       	       5       	       4       	     3 	       	   2   	       	 1     	       	 0
+   +-----------------+----------------+----------------+--------------+-------------+-------------+-------------+----------------+
+   |                 | 	              |	      	       |              |             |        	  |	        |             	 |
+   |                 | 	              |	      	       |              |             |        	  |	        |             	 |
+   |    REFS1        |    REFS0       |	   ADLAR       |   MUX4       |   MUX3      |    MUX2  	  |   MUX1      |     MUX0    	 |
+   |                 |                |                |              |             |             |             |             	 |
+   |                 |                |                |              |             |             |             |                |
+   +-----------------+----------------+----------------+--------------+-------------+-------------+-------------+----------------+
+       	  R/W  	       	    R/W	       	      R/W      	      R/W      	     R/W       	  R/W  	       	 R/W   	       	R/W
+       	   0   	       	     0 	       	       0       	       0       	      0	       	   0   	       	  0    	       	 0
+

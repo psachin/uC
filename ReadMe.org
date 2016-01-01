@@ -1,36 +1,46 @@
+#+TITLE: ReadMe
+#+DATE: \today
+#+AUTHOR: Sachin
+#+EMAIL: iclcoolster@gmail.com
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:t todo:t |:t
+#+CREATOR: Emacs 24.4.1 (Org mode 8.2.10)
+#+DESCRIPTION: MicroHope specific files are copied to /usr/avr/include/mh/mh-*
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+
 * ATMega32A in avr-C
 
 ** Depends on
-   - gcc-avr
-   - avr-libc
-   - avrdude
+   - =gcc-avr=
+   - =avr-libc=
+   - =avrdude=
+
+** Makefile configuration
+   - BINARY: Specify the source file name(without .c extension)
+   - TTY: Specify serial port(without preceding =/dev/= (default is
+     =ttyUSB0=)
 
 ** Usage
    - To compile
      #+BEGIN_SRC sh
-       make compile ARG="hello"
+       make
      #+END_SRC sh
 
-     or
-     #+BEGIN_SRC sh
-       make ARG="hello"
-     #+END_SRC sh
-
-     /Note/: In the above example if you provide the string as *hello*
-     to =ARG=, you must have =hello.c= in the same directory as
+     /Note/: In the above example if you provide *BINARY = hello* in
+     the =Makefile=, you must have =hello.c= in the same directory as
      =Makefile=.
 
    - To flash/burn your program
      #+BEGIN_SRC sh
-       make burn ARG="hello"
+       make burn
      #+END_SRC sh
 
    - To clean
-     #+BEGIN_SRC sh
-       make clean ARG="hello"
-     #+END_SRC sh
-
-     optionally you can also run
      #+BEGIN_SRC sh
        make clean
      #+END_SRC sh
